@@ -11,12 +11,18 @@ string[] CreateArray(int length)
 
  void PrintArray (string[] array)
  {   
-     Console.Write("Массив: [ ");
+    if (array.Length == 0)
+     {
+         Console.WriteLine("[]");
+         return;
+     }
+
+     Console.Write("[");
      for (int i = 0; i < (array.Length - 1); i++)
      {
          Console.Write($"{array[i]}, ");
      }
-    Console.WriteLine($"{array[array.Length-1]}]"); }
+    Console.Write($"{array[array.Length-1]}]"); }
 
 int CountElementsUnder3Chars (string[] array)
  {   
@@ -43,9 +49,15 @@ int CountElementsUnder3Chars (string[] array)
  }
 
  Console.WriteLine("Создание массива, введите длину массива: ");
- int userLength = int.Parse(Console.ReadLine()!);
+ int userLength = 0;
+ while (!int.TryParse(Console.ReadLine(), out userLength) || userLength < 1)
+ {
+     Console.WriteLine("Неверный ввод. Введите число больше 0: ");
+ }
+
  string[] userArray = CreateArray(userLength);
  PrintArray(userArray);
  int arrayCount = CountElementsUnder3Chars(userArray);
  string[] duplicatedArray = DuplicateArray(userArray, arrayCount);
+ Console.Write(" -> ");
  PrintArray(duplicatedArray);
