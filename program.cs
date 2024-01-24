@@ -23,7 +23,17 @@ string[] CreateArray(int length)
      }
      Console.Write($"{array[array.Length-1]}]");
  }
- 
+
+int CountElementsUnder3Chars (string[] array) //Подсчет элементов в массиве длиной меньше 3
+ {   
+     int count = 0;
+     for (int i = 0; i < array.Length; i++)
+     {
+         if (array[i].Length <= 3) count++;
+     }
+     return count;
+ }
+
  Console.WriteLine("Создание массива, введите длину массива: ");
  int userLength = int.Parse(Console.ReadLine()!);
  string[] userArray = CreateArray(userLength);
